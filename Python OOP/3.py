@@ -39,7 +39,7 @@ def max_elevation_city(min_population):
 	# does city #1 have at least min_population and
 	# is its elevation the highest evaluated so far?
 	if City.population >= min_population:
-		
+		if
 		
 		return_city = City.name
 	# Evaluate the 2nd instance to meet the requirements:
