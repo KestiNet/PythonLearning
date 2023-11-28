@@ -1,1 +1,1 @@
-# Start of a new Python program
+ä# Start of a new Python program
