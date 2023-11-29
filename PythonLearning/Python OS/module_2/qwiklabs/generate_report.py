@@ -1,20 +1,34 @@
+#!/usr/bin/env python3
+
 import csv
 
-csv_file_path = '/Users/esakesti/Desktop/Dev/PythonLearning/PythonLearning/Python OS/module_2/qwiklabs/employees.csv'
+def read_employees(file_path='/mnt/c/Dev/PythonLearning/PythonLearning/Python OS/module_2/qwiklabs/employees.csv'):
+    csv.register_dialect('empDialect', skipinitialspace=True, strict=True)
+    employee_file = csv.DictReader(open(file_path), dialect = 'empDialect')
+    
+    employee_list = []
+    for data in employee_file:
+        employee_list.append(dict(data))
 
-try:
-    with open(csv_file_path, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
+    return employee_list
 
-        # Print the corrected header
-        header = [field.strip() for field in reader.fieldnames]
-        print(f"Header: {header}")
+employee_list = read_employees('/mnt/c/Dev/PythonLearning/PythonLearning/Python OS/module_2/qwiklabs/employees.csv')
 
-        # Print the 'Department' values for each row
-        for row in reader:
-            department_value = row.get('Department', '').strip()
-            print(department_value)
-except FileNotFoundError:
-    print(f"Error: File '{csv_file_path}' not found.")
-except Exception as e:
-    print(f"An unexpected error occurred: {e}")
+def process_data(employee_list):
+    department_list = []
+    for employee_data in employee_list:
+        department_list.append(employee_data['Department'])
+
+    department_data = {}
+    for department_name in set(department_list):
+        department_data[department_name] = department_list.count(department_name)
+    return department_data
+
+dictionary = process_data(employee_list)
+
+def write_report(dictionary, report_file):
+    with open (report_file, "w+") as f:
+        for k in sorted(dictionary):
+            f.write(str(k) + ':' + str(dictionary[k]) + '\n')
+        f.close()
+write_report(dictionary, '/mnt/c/Dev/PythonLearning/PythonLearning/Python OS/module_2/qwiklabs/test_report.txt') 
