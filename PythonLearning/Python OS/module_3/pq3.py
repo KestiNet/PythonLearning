@@ -1,6 +1,6 @@
 import re
 def contains_acronym(text):
-  pattern = r'\([A-Z][A-Za-z0-9]*\)
+  pattern = r'\([A-Z][A-Za-z0-9]*\)'
   result = re.search(pattern, text)
   return result != None
 

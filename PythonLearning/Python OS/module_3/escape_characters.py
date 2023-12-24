@@ -1,7 +1,7 @@
 import re
 print(re.search(r".com", "welcome"))
 #\ is an escape character
-print(re.search(r"\.com", "welcome"))
+print(re.search(r".com", "welcome"))
 #using the backslash we can search for the dot 
 print(re.search(r"\.com", "kestinet.com"))
 
