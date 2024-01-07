@@ -12,5 +12,3 @@ print(colors)
 
 teacher_names = {"math":"aniyah Cook", "Science":"Ines blisset", "Engineering":"Wayne Branon"}
 teacher_names.values()
-
-teacher_names = \
